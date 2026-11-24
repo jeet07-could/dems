@@ -8,8 +8,16 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models';
+
+// Candidate models in priority order
+const MODEL_CANDIDATES = [
+  GEMINI_MODEL,
+  'gemma-4-31b-it',
+  'gemini-3.5-flash-lite',
+  'gemini-flash-latest',
+];
 
 // System prompt grounding the AI as the DEMS Forensic Investigation Assistant
 const SYSTEM_INSTRUCTION = `
@@ -51,62 +59,74 @@ function sanitizeInput(text) {
  */
 export async function callGeminiApi({ prompt, context = '', systemPrompt = SYSTEM_INSTRUCTION }) {
   const sanitizedPrompt = sanitizeInput(prompt);
+  const apiKey = (process.env.GEMINI_API_KEY || '').trim();
 
   // Check if real Gemini API Key is provided
-  const hasKey = GEMINI_API_KEY && GEMINI_API_KEY.trim() !== '' && GEMINI_API_KEY !== 'your_actual_key';
+  const hasKey = apiKey !== '' && apiKey !== 'your_actual_key' && apiKey !== 'your-gemini-api-key';
 
   if (hasKey) {
-    try {
-      const url = `${GEMINI_ENDPOINT}/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
-      const payload = {
-        systemInstruction: {
-          parts: [{ text: systemPrompt }],
-        },
-        contents: [
-          {
-            role: 'user',
-            parts: [
-              {
-                text: context ? `CASE CONTEXT & AUTHORIZED EVIDENCE:\n${context}\n\nUSER INVESTIGATIVE QUERY:\n${sanitizedPrompt}` : sanitizedPrompt,
-              },
-            ],
+    const modelsToTry = [
+      process.env.GEMINI_MODEL || 'gemini-3.8-flash',
+      'gemma-4-31b-it',
+      'gemini-3.5-flash-lite',
+      'gemini-flash-latest',
+    ];
+
+    for (const model of modelsToTry) {
+      try {
+        const url = `${GEMINI_ENDPOINT}/${model}:generateContent?key=${apiKey}`;
+        const payload = {
+          contents: [
+            {
+              role: 'user',
+              parts: [
+                {
+                  text: context
+                    ? `${systemPrompt}\n\nCASE CONTEXT & AUTHORIZED EVIDENCE:\n${context}\n\nUSER INVESTIGATIVE QUERY:\n${sanitizedPrompt}`
+                    : `${systemPrompt}\n\nUSER INVESTIGATIVE QUERY:\n${sanitizedPrompt}`,
+                },
+              ],
+            },
+          ],
+          generationConfig: {
+            temperature: 0.2, // Low temperature for factual forensic consistency
+            topP: 0.8,
+            maxOutputTokens: 2048,
           },
-        ],
-        generationConfig: {
-          temperature: 0.2, // Low temperature for factual forensic consistency
-          topP: 0.8,
-          maxOutputTokens: 2048,
-        },
-      };
-
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errText = await response.text();
-        console.warn(`[DEMS AI] Gemini API responded with status ${response.status}:`, errText);
-        throw new Error(`Gemini API error (${response.status})`);
-      }
-
-      const json = await response.json();
-      const answer = json.candidates?.[0]?.content?.parts?.[0]?.text;
-      const usage = json.usageMetadata || {};
-
-      if (answer) {
-        return {
-          success: true,
-          provider: 'google-gemini',
-          model: GEMINI_MODEL,
-          answer,
-          tokens: usage.totalTokenCount || 0,
-          timestamp: new Date().toISOString(),
         };
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          console.warn(`[DEMS AI] Model ${model} responded with status ${response.status}:`, errText.slice(0, 150));
+          continue; // Try next fallback model
+        }
+
+        const json = await response.json();
+        const answer = json.candidates?.[0]?.content?.parts?.[0]?.text;
+        const usage = json.usageMetadata || {};
+
+        if (answer) {
+          return {
+            success: true,
+            provider: 'google-gemini',
+            model,
+            answer,
+            tokens: usage.totalTokenCount || 0,
+            timestamp: new Date().toISOString(),
+          };
+        }
+      } catch (err) {
+        console.warn(`[DEMS AI] Request with model ${model} failed:`, err.message);
       }
-    } catch (err) {
-      console.warn('[DEMS AI] Gemini live request failed, falling back to local forensic reasoning:', err.message);
     }
   }
 
