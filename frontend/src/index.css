@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== DEMS Institutional Design System (National Forensic Standard) ===== */
+
+@layer base {
+  body {
+    @apply bg-slate-100 text-slate-800 font-body antialiased;
+    color: #1e293b;
+  }
+
+  ::selection {
+    background-color: rgba(217, 119, 6, 0.3);
+    color: #0b1329;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Institutional Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-navy-900 px-5 py-2.5
+      text-sm font-semibold text-white shadow-sm transition-all duration-200
+      hover:bg-navy-800 hover:shadow active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-navy-700/50 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-2.5
+      text-sm font-semibold text-white shadow-sm transition-all duration-200
+      hover:from-amber-600 hover:to-amber-700 hover:shadow active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-amber-500/50 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white
+      px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all duration-200
+      hover:bg-slate-50 hover:border-slate-400 active:scale-[0.98]
+      focus:outline-none focus:ring-2 focus:ring-slate-300 disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg
+      px-3 py-1.5 text-xs font-medium text-slate-600 transition-all duration-150
+      hover:bg-slate-200 hover:text-slate-900 focus:outline-none;
+  }
+
+  /* Form Fields */
+  .field {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5
+      text-sm text-slate-800 placeholder-slate-400 shadow-sm transition
+      focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20;
+  }
+
+  /* Surface Cards */
+  .card-gov {
+    @apply rounded-xl border border-slate-200/90 bg-white p-5 shadow-gov-card transition-all duration-200;
+  }
+
+  .card-gov-interactive {
+    @apply rounded-xl border border-slate-200/90 bg-white p-5 shadow-gov-card transition-all duration-200
+      hover:shadow-gov-elevated hover:border-slate-300;
+  }
+
+  .card-navy {
+    @apply rounded-xl border border-navy-750 bg-navy-900 p-5 shadow-xl text-white;
+  }
+
+  /* Badges & Tags */
+  .gov-stripe {
+    background: linear-gradient(
+      to right,
+      #ea580c 0% 33.33%,
+      #ffffff 33.33% 66.66%,
+      #15803d 66.66% 100%
+    );
+  }
+
+  /* Animations */
+  @keyframes riseIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-rise {
+    animation: riseIn 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}

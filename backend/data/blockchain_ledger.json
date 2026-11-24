@@ -1,0 +1,43 @@
+[
+  {
+    "blockNumber": 0,
+    "timestamp": "2026-01-01T00:00:00.000Z",
+    "previousBlockHash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "merkleRoot": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+    "transactions": [
+      {
+        "txHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "documentId": "GENESIS",
+        "documentHash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+        "digitalId": "GOV-INDIA-ROOT",
+        "action": "GENESIS_INITIALIZATION",
+        "timestamp": "2026-01-01T00:00:00.000Z"
+      }
+    ],
+    "blockHash": "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048",
+    "status": "COMMITTED",
+    "validator": "DEMS-CONSORTIUM-NODE-01"
+  },
+  {
+    "blockNumber": 1,
+    "timestamp": "2026-11-24T11:59:13.049Z",
+    "previousBlockHash": "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048",
+    "merkleRoot": "3c15b5e6e9440b7d8bdff125c3fc67a33745aeb149ede14f5c177a82584dd8c2",
+    "transactions": [
+      {
+        "txHash": "0x2efa713ae052c7146850152dedc463e45d991e0d251cfedf178489c2dc241963",
+        "documentId": "TEST-EVIDENCE-01",
+        "documentHash": "a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e",
+        "digitalId": "DEMS-UP-GZ-0001",
+        "caseId": "CASE-GENERAL",
+        "fileName": "sample_cctv.mp4",
+        "fileSize": 1048576,
+        "timestamp": "2026-11-24T11:59:13.049Z",
+        "signature": "f4b90da51d4c02a116e6324247c1abb9046b135469043cd0e07992d01431bac4"
+      }
+    ],
+    "blockHash": "84d8890acfb8005e11132cdcc0abfd2d9944e551fe701ead2e7bb9ecdb0ffac6",
+    "status": "COMMITTED",
+    "validator": "DEMS-VALIDATOR-2"
+  }
+]

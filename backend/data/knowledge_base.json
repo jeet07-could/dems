@@ -1,0 +1,58 @@
+[
+  {
+    "id": "KB-SOP-001",
+    "title": "Digital Evidence Chain of Custody SOP (Section 65B BSA)",
+    "category": "Legal Standard",
+    "author": "State Cyber Crime Division",
+    "updatedAt": "2026-11-20",
+    "content": "All electronic evidence collected during police investigation must be cryptographically hashed (SHA-256) at the exact time of physical seizure. The cryptographic hash, seizure timestamp, and seizing officer Digital ID must be anchored to the consortium ledger to guarantee non-repudiation in court under Section 65B of the Bharatiya Sakshya Adhiniyam.",
+    "tags": [
+      "Chain of Custody",
+      "Section 65B",
+      "BSA",
+      "Forensics"
+    ]
+  },
+  {
+    "id": "KB-SOP-002",
+    "title": "Mobile Device & Electronic Media Seizure Guidelines",
+    "category": "Operational Guide",
+    "author": "Forensic Science Laboratory (FSL)",
+    "updatedAt": "2026-11-15",
+    "content": "Seized mobile phones and storage devices must be placed inside anti-static Faraday shielding bags immediately. Officers must never attempt to unlock or browse device storage without authorized write-blocking equipment to prevent alteration of system timestamps.",
+    "tags": [
+      "Device Seizure",
+      "Faraday",
+      "Hardware",
+      "Tamper Prevention"
+    ]
+  },
+  {
+    "id": "KB-SOP-003",
+    "title": "Role-Based Authorization & Zero-Trust Protocol",
+    "category": "Security Architecture",
+    "author": "DEMS Security Architecture Group",
+    "updatedAt": "2026-11-22",
+    "content": "Uploader role has exclusive permissions to register cases and upload evidence files. Reader role is read-only and may perform cryptographic integrity audits. District DM has jurisdiction-wide oversight across all thanas in the district. System Admin oversees node operations and consortium health.",
+    "tags": [
+      "RBAC",
+      "Roles",
+      "Zero-Trust",
+      "Authorization"
+    ]
+  },
+  {
+    "id": "KB-SOP-004",
+    "title": "Consortium Blockchain Consensus & Tamper Detection",
+    "category": "Cryptographic Standard",
+    "author": "DEMS Blockchain Core",
+    "updatedAt": "2026-11-23",
+    "content": "DEMS utilizes a Proof of Authority (PoA) consortium blockchain where authorized police nodal servers validate blocks. Any modification to a live evidence file alters its SHA-256 digest, immediately failing the cryptographic parity check against the anchored Merkle root.",
+    "tags": [
+      "Blockchain",
+      "PoA",
+      "Merkle Root",
+      "SHA-256"
+    ]
+  }
+]
