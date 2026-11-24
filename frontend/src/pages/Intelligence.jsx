@@ -29,11 +29,13 @@ const TABS = [
 ]
 
 const PROMPT_SUGGESTIONS = [
+  'What BNS 2023 & IT Act sections apply to cyber fraud?',
+  'Explain Section 63 BSA (legacy Sec 65B IEA) admissibility requirements.',
+  'What is the difference between IPC 420 and BNS 318(4)?',
+  'What are the mandatory digital seizure guidelines under Section 105 BNSS?',
   'Summarise this case and primary forensic findings.',
-  'Reconstruct the chronological timeline of recorded events.',
-  'Check for discrepancies across uploaded statements.',
-  'What evidence artifacts are currently anchored on blockchain?',
-  'What information is missing from the case record?',
+  'Check for discrepancies across uploaded witness statements.',
+  'What procedure is required for Notice of Appearance under BNSS 35(3)?',
 ]
 
 export default function Intelligence() {
@@ -49,7 +51,7 @@ export default function Intelligence() {
   const [copilotMessages, setCopilotMessages] = useState([
     {
       role: 'assistant',
-      text: 'Welcome to the DEMS Forensic Intelligence Center. I am your investigative assistant grounded strictly in verified case exhibits and Section 65B BSA procedural records. Select a case above to begin analysis.',
+      text: 'Welcome Officer. I am your DEMS Legal & Digital Forensics Intelligence Copilot. I can analyze case evidence exhibits, reconstruct timelines, identify discrepancies, and guide you on applicable statutory sections under the New Criminal Laws (BNS 2023, BNSS 2023, BSA 2023), IT Act 2000, and legacy IPC/CrPC provisions. How may I assist your investigation today?',
       citations: [],
       timestamp: '17:52:16',
     },

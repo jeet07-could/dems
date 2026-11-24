@@ -45,6 +45,42 @@ const DEFAULT_KNOWLEDGE = [
     content: 'DEMS utilizes a Proof of Authority (PoA) consortium blockchain where authorized police nodal servers validate blocks. Any modification to a live evidence file alters its SHA-256 digest, immediately failing the cryptographic parity check against the anchored Merkle root.',
     tags: ['Blockchain', 'PoA', 'Merkle Root', 'SHA-256'],
   },
+  {
+    id: 'KB-LAW-005',
+    title: 'BNS 2023 vs IPC 1860: Key Offenses & Penal Concordance',
+    category: 'Statutory Law',
+    author: 'Legal Research & Prosecution Wing',
+    updatedAt: '2026-11-24',
+    content: 'Under the Bharatiya Nyaya Sanhita 2023 (BNS): Cheating is governed by Section 318(4) [formerly Section 420 IPC, punishable up to 7 years], Cheating by personation is under Section 319 BNS [formerly Section 419 IPC], Theft is under Section 303(2) BNS [formerly Section 379 IPC], Forgery for cheating is under Section 338 BNS [formerly Section 468 IPC], and Criminal Conspiracy is under Section 61(2) BNS [formerly Section 120B IPC].',
+    tags: ['BNS', 'IPC', 'Concordance', 'Cheating', 'Section 318', 'Section 420'],
+  },
+  {
+    id: 'KB-LAW-006',
+    title: 'BNSS 2023 Procedural Transformation: Zero FIR, Arrest & Evidence',
+    category: 'Criminal Procedure',
+    author: 'Police Modernization Cell',
+    updatedAt: '2026-11-24',
+    content: 'The Bharatiya Nagarik Suraksha Sanhita 2023 introduces mandatory Zero FIR under Section 173 BNSS, Notice of Appearance instead of routine arrest under Section 35(3) BNSS [formerly Section 41A CrPC], and mandatory video recording of search and seizure operations under Section 105 BNSS.',
+    tags: ['BNSS', 'CrPC', 'Zero FIR', 'Section 35(3)', 'Section 41A', 'Procedure'],
+  },
+  {
+    id: 'KB-LAW-007',
+    title: 'BSA 2023 Section 63 vs IEA Section 65B: Electronic Admissibility',
+    category: 'Electronic Evidence',
+    author: 'State Cyber Cell & Digital Forensics',
+    updatedAt: '2026-11-24',
+    content: 'Section 63 of the Bharatiya Sakshya Adhiniyam 2023 establishes the conditions for admissibility of electronic records, replacing Section 65B of the Indian Evidence Act 1872. A Section 63(4) certificate confirming device identity, custodian particulars, and hash integrity is mandatory for trial production.',
+    tags: ['BSA', 'Section 63', 'Section 65B', 'IEA', 'Admissibility', 'Certificate'],
+  },
+  {
+    id: 'KB-LAW-008',
+    title: 'Cyber Crime Statutory Matrix: IT Act 2000 & BNS Integration',
+    category: 'Cyber Forensics',
+    author: 'DEMS Forensic Intelligence Desk',
+    updatedAt: '2026-11-24',
+    content: 'Cyber offenses require joint application of the IT Act 2000 and BNS 2023: Section 66D IT Act (cheating by personation using computers) read with Section 318(4) BNS, Section 66C IT Act (identity theft) read with Section 319 BNS, Section 43/66 IT Act (data theft) read with Section 303(2) BNS, and Section 66F IT Act (cyber terrorism) read with Section 113 BNS.',
+    tags: ['IT Act', 'Section 66D', 'Section 66C', 'Cyber Crime', 'BNS', 'Hacking'],
+  },
 ];
 
 class KnowledgeService {

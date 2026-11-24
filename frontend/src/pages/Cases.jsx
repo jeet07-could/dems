@@ -487,9 +487,10 @@ export default function Cases() {
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {[
+                      'What BNS and IT Act sections apply to this case?',
                       'Summarize chain of custody & forensic continuity',
-                      'Identify key suspects, devices & financial transactions',
-                      'Verify Section 65B BSA compliance requirements',
+                      'Verify Section 63 BSA (legacy Sec 65B) admissibility requirements',
+                      'What legal notice is required under Section 35(3) BNSS?',
                       'Are there any unverified evidence exhibits in this case?',
                     ].map((prompt, i) => (
                       <button
